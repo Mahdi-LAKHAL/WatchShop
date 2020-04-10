@@ -6,6 +6,7 @@ import { SinupComponent } from './components/sinup/sinup.component';
 import { AboutusComponent } from './components/aboutus/aboutus.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ShopComponent } from './components/shop/shop.component';
+import { AddWatchComponent } from './components/add-watch/add-watch.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: "aboutus", component: AboutusComponent},
   {path: "contact", component: ContactComponent},
   {path: "shop", component: ShopComponent},
+  {path: "addwatch", component: AddWatchComponent},
 ];
 
 @NgModule({

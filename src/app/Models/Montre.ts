@@ -2,10 +2,11 @@ export class Montre {
     constructor (
         public id:number,
         public price:number,
+        public name:string,
         public marque:string,
         public image:string,
-        public discription:string,
-        public disponibility: boolean
+        public description:string,
+
     ){
 
     }

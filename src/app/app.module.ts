@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -21,6 +21,7 @@ import { SinupComponent } from './components/sinup/sinup.component';
 import { AboutusComponent } from './components/aboutus/aboutus.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ShopComponent } from './components/shop/shop.component';
+import { AddWatchComponent } from './components/add-watch/add-watch.component';
 
 @NgModule({
   declarations: [
@@ -43,8 +44,11 @@ import { ShopComponent } from './components/shop/shop.component';
     AboutusComponent,
     ContactComponent,
     ShopComponent,
+    AddWatchComponent
   ],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule
   ],

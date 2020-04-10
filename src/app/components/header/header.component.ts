@@ -21,7 +21,7 @@ this.lenghtFullName= this.fullName.length;
 }
 
 concater(a:string, b:string) {
-console.log("a+b", a+b);
+// console.log("a+b", a+b);
 return a+" "+b;
 }
 
