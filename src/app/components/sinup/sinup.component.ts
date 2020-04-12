@@ -22,14 +22,16 @@ export class SinupComponent implements OnInit {
 
   ngOnInit() {
     console.log("user added", this.user);
-    this.user = new User(0,'','','','','',0,'');
+    this.user = new User(0,'','','','','','','');
       this.userform = this.formBuilder.group({
         fName: [''],
         lName: [''],
         email: [''],
         pwd: [''],
-        confirmPwd: ['']
-      });
+        confirmPwd: [''],
+        address: [''],
+        tel:['']
+      });  
   }
   saveUser(user: any) {
   

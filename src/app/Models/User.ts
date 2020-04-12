@@ -6,7 +6,7 @@ export class User {
         public email:string,
         public pwd:string,
         public confirmPwd: string,
-        public tel:number,
+        public tel:string,
         public address:string,
     ){
     }

@@ -11,9 +11,10 @@
             <div class="panel-body">
                 <div id="contact_form">
                     <form #useForm="ngForm" class="bg-light p-5 user-form" (ngSubmit)='saveUser(userform.value)'>
-                        <input class="full-with-form " type="text" name="first name" placeholder="fName" [(ngModel)]="user.fName" [ngModelOptions]="{standalone:true}" />
-
-                        <input class="full-with-form " type="text" name="last name" placeholder="lName" [(ngModel)]="user.lName" [ngModelOptions]="{standalone:true}" />
+                        <input class="full-with-form mt_30" type="text" name="first name" placeholder="fName" [(ngModel)]="user.fName" [ngModelOptions]="{standalone:true}" />
+                        <input class="full-with-form mt_30" type="text" name="last name" placeholder="lName" [(ngModel)]="user.lName" [ngModelOptions]="{standalone:true}" />
+                        <input class="full-with-form mt_30" type="text" name="address" placeholder="address" [(ngModel)]="user.address" [ngModelOptions]="{standalone:true}" />
+                        <input class="full-with-form mt_30" type="text" name="tel" placeholder="Telephone" [(ngModel)]="user.tel" [ngModelOptions]="{standalone:true}" />
 
                         <input class="full-with-form  mt_30" type="email" name="email" placeholder="email" [(ngModel)]="user.email" [ngModelOptions]="{standalone:true}" />
                         <input class="full-with-form  mt_30" type="password" name="pwd" placeholder="password" [(ngModel)]="user.pwd" [ngModelOptions]="{standalone:true}" />
