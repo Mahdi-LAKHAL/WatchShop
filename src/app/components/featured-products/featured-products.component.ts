@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Montre } from '../../Models/Montre';
+import { MontreService } from 'src/app/services/watch.service';
 
 @Component({
   selector: 'app-featured-products',
@@ -8,14 +9,15 @@ import { Montre } from '../../Models/Montre';
 })
 export class FeaturedProductsComponent implements OnInit {
   montres: Montre[];
+  constructor(private montreService: MontreService) { }
 
-  constructor() { }
+  ngOnInit() {
 
-  ngOnInit(): void {
-    this.montres = [
-      { id: 1, price: 200, name: 'mahdi' , marque: 'swatch', image:'test', description: 'Persistent' },
-      { id: 2, price: 200, name: 'mahdi' , marque: 'festina', image:'test', description: 'Persistent'},
-      { id: 3, price: 200, name: 'mahdi' , marque: 'fossile', image:'test', description: 'Persistent'},
-      { id: 4, price: 200, name: 'mahdi' , marque: 'citizen', image:'test', description: 'Persistent'},
+    this.montreService.getMontres().subscribe(
+      (data) => {
+        this.montres = data;
+      }
+    );
+  }
 
-     ]}}
+}

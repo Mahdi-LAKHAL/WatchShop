@@ -13,36 +13,7 @@
             <div class="tab-content clearfix box">
                 <div class="tab-pane active" id="nArrivals">
                     <div class="nArrivals owl-carousel">
-                        <app-product-unit></app-product-unit>
-                        <app-product-unit></app-product-unit>
-                        <app-product-unit></app-product-unit>
-                        <app-product-unit></app-product-unit>
-                        <app-product-unit></app-product-unit>
-                        <app-product-unit></app-product-unit>
-                    </div>
-                </div>
-                <div class="tab-pane" id="Bestsellers">
-                    <div class="Bestsellers owl-carousel">
-                        <app-product-unit></app-product-unit>
-                        <app-product-unit></app-product-unit>
-                        <app-product-unit></app-product-unit>
-                        <app-product-unit></app-product-unit>
-                        <app-product-unit></app-product-unit>
-                        <app-product-unit></app-product-unit>
-                    </div>
-                </div>
-                <div class="tab-pane" id="Featured">
-                    <div class="Featured owl-carousel">
-                        <app-product-unit></app-product-unit>
-                        <app-product-unit></app-product-unit>
-                        <app-product-unit></app-product-unit>
-                        <app-product-unit></app-product-unit>
-                        <app-product-unit></app-product-unit>
-                        <app-product-unit></app-product-unit>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- =====  PRODUCT TAB  END ===== -->
-    </div>
-</div>
+                        <div class="item" *ngFor="let i of montres">
+                            <!-- <app-watch [description]="i.description" [price]="i.price"></app-watch> -->
+                            <app-product-unit [montre]="i"></app-product-unit>
+                        </div>

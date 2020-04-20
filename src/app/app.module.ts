@@ -22,6 +22,12 @@ import { AboutusComponent } from './components/aboutus/aboutus.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ShopComponent } from './components/shop/shop.component';
 import { AddWatchComponent } from './components/add-watch/add-watch.component';
+import { MontreService } from './services/watch.service';
+import { UserService } from './services/user.service';
+import { DataService } from './services/data.service';
+import { InMemoryWebApiModule, HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -50,9 +56,12 @@ import { AddWatchComponent } from './components/add-watch/add-watch.component';
     FormsModule,
     ReactiveFormsModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    InMemoryWebApiModule.forRoot(DataService),
+    HttpClientInMemoryWebApiModule.forRoot(DataService),
+    HttpClientModule
   ],
-  providers: [],
+  providers: [MontreService,UserService, DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

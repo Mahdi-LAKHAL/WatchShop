@@ -7,6 +7,7 @@ import { AboutusComponent } from './components/aboutus/aboutus.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ShopComponent } from './components/shop/shop.component';
 import { AddWatchComponent } from './components/add-watch/add-watch.component';
+import { FeaturedProductsComponent } from './components/featured-products/featured-products.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: "contact", component: ContactComponent},
   {path: "shop", component: ShopComponent},
   {path: "addwatch", component: AddWatchComponent},
+  {path: "watch", component: FeaturedProductsComponent},
 ];
 
 @NgModule({
