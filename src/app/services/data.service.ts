@@ -23,7 +23,11 @@ export class DataService implements InMemoryDbService {
       { id: 1, fName: 'Mahdi', lName: 'Lakhal', email: 'Mahdi@gmail.com', pwd: '123456789', confirmPwd: '123456789', tel: '54410515', address: 'tunis' },
       { id: 2, fName: 'Iheb', lName: 'Baklouti', email: 'Iheb@gmail.com', pwd: '123456789', confirmPwd: '123456789', tel: '54410515', address: 'tunis' },
       { id: 3, fName: 'Abderrahmen', lName: 'Masmoudi', email: 'Abderrahmen@gmail.com', pwd: '123456789', confirmPwd: '123456789', tel: '54410515', address: 'tunis' },
-      { id: 4, fName: 'Taha', lName: 'LAgha', email: 'Taha@gmail.com', pwd: '123456789', confirmPwd: '123456789', tel: '54410515', address: 'tunis' }
+      { id: 4, fName: 'Taha', lName: 'LAgha', email: 'Taha@gmail.com', pwd: '123456789', confirmPwd: '123456789', tel: '54410515', address: 'tunis' },
+      { id: 5, fName: 'Taha', lName: 'LAgha', email: 'Taha@gmail.com', pwd: '123456789', confirmPwd: '123456789', tel: '54410515', address: 'tunis' },
+      { id: 6, fName: 'Taha', lName: 'LAgha', email: 'Taha@gmail.com', pwd: '123456789', confirmPwd: '123456789', tel: '54410515', address: 'tunis' },
+      { id: 7, fName: 'Taha', lName: 'LAgha', email: 'Taha@gmail.com', pwd: '123456789', confirmPwd: '123456789', tel: '54410515', address: 'tunis' },
+      { id: 8, fName: 'Taha', lName: 'LAgha', email: 'Taha@gmail.com', pwd: '123456789', confirmPwd: '123456789', tel: '54410515', address: 'tunis' }
     ];
     return { montres, users };
 

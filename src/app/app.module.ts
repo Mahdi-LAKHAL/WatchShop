@@ -27,6 +27,7 @@ import { UserService } from './services/user.service';
 import { DataService } from './services/data.service';
 import { InMemoryWebApiModule, HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { DashbordAdminComponent } from './components/dashbord-admin/dashbord-admin.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     AboutusComponent,
     ContactComponent,
     ShopComponent,
-    AddWatchComponent
+    AddWatchComponent,
+    DashbordAdminComponent
   ],
   imports: [
     FormsModule,

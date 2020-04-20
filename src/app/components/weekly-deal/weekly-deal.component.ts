@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Montre } from 'src/app/models/montre';
+import { MontreService } from 'src/app/services/watch.service';
 
 @Component({
   selector: 'app-weekly-deal',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WeeklyDealComponent implements OnInit {
 
-  constructor() { }
+  montres: Montre[];
+  constructor(private montreService: MontreService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+
+    this.montreService.getMontres().subscribe(
+      (data) => {
+        this.montres = data;
+      }
+    );
   }
 
 }
