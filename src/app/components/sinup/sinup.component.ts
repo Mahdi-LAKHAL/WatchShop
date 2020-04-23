@@ -24,8 +24,8 @@ export class SinupComponent {
 
   createForm() {
     this.userForm = this.fb.group({
-      firstName: ['', [Validators.required, Validators.maxLength(5), Validators.minLength(2)]],
-      lastName: ['', Validators.required],
+      fName: ['', [Validators.required, Validators.maxLength(5), Validators.minLength(2)]],
+      lName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
      
       password: ['',[Validators.required, Validators.pattern(/^(?=\D*\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}$/)]
@@ -40,13 +40,15 @@ export class SinupComponent {
   
 
 
-  submitForm(test: any) {
+  submitForm(userForm: any) {
     console.log("Object : ", this.userForm.value);
-    //  this.userService.addUser(this.userForm.value).subscribe(
-    //    result => {
-    //     console.log("Added");
-    //     this.router.navigate(['/']);
-    //    }
-    //  )   
+     this.userService.addUser(this.userForm.value).subscribe(
+      (response) => {
+        console.log("Added", response);
+        const link=[`/dashboard`];
+        this.router.navigate(link);
+       }
+     )   
   }
 }         
+

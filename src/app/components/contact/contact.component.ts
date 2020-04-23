@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Contact } from 'src/app/Models/contact';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { ContactService } from 'src/app/services/contact.service';
 
 @Component({
   selector: 'app-contact',
@@ -7,9 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactComponent implements OnInit {
 
-  constructor() { }
+contact: Contact;
+contactForm : FormGroup;
+id: number;
+  constructor( private formBuilder: FormBuilder,
+   private contactService: ContactService) { }
 
   ngOnInit(): void {
+this.contact=new Contact(this.id,"","","","","");
+this.contactForm = this.formBuilder.group({ 
+  contactName: [''],
+  contactEmail:[''],
+contactTel: [''],
+contactSubject:[''],
+contactMsg:['']
+})
   }
+//   saveContact( contactForm:any){
+// console.log("here my contact values", this.contact);
+// this.contactService.addContact(this.contact).subscribe()
 
+//   }
 }

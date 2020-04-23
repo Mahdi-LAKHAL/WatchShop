@@ -18,3 +18,24 @@
         </tbody>
     </table>
 </div>
+<div class="container">
+    <table class="table table-striped table-dark">
+        <thead>
+            <tr>
+                <th scope="col" *ngFor="let w of tableHeadersMontre">{{w}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor=" let m of montres">
+                <th scope="row">{{m.id}}</th>
+                <td>{{m.price}}</td>
+                <td>{{m.marque}}</td>
+                <td>{{m.name}}</td>
+                <td>{{m.description}}</td>
+                <td><button class="btn btn-info" (click)="displayWatch(m.id)">Display</button></td>
+                <td><button class="btn btn-warning" (click)="updateWatch(m)">Edit</button></td>
+                <td><button class="btn btn-danger" (click)="deleteWatch(m)">Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -14,6 +14,7 @@ export class AddWatchComponent implements OnInit {
   montre: Montre;
   montreForm: FormGroup;
   id: number;
+  price: number;
   constructor(
 
     private router: Router,
@@ -23,7 +24,7 @@ export class AddWatchComponent implements OnInit {
 
   ngOnInit() {
     console.log("montre added", this.montre);
-    this.montre = new Montre(0, 0 , '', '', '','');
+    this.montre = new Montre(this.id, this.price , '', '', '','');
       this.montreForm = this.formBuilder.group({
         name: [''],
         price: [''],

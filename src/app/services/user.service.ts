@@ -11,6 +11,7 @@ import { User } from '../models/User';
 export class UserService {
   constructor(private http: HttpClient) { }
   private adminUrl = 'api/users';
+ 
   // Log function for Console
   private log(log: string) {
     console.info(log);
@@ -30,14 +31,14 @@ export class UserService {
       catchError(this.handleError('get user', []))
     );
   }
-  // addUser(montre: User): Observable<User> {
-  //   const url = `${this.adminUrl}`;
-  //   const httpOptions = {
-  //     headers: new HttpHeaders({ 'content-type': 'application/json' })
-  //   };
-  //   return this.http.post<User>(url, montre, httpOptions).pipe(
-  //     tap(_ => this.log(`ajouter user id= ${users.id}`)),
-  //     catchError((this.handleError<any>('ajouter user')))
-  //   );
-  // }
+  addUser(user: User): Observable<User> {
+    const url = `${this.adminUrl}`;
+    const httpOptions = {
+      headers: new HttpHeaders({ 'content-type': 'application/json' })
+    };
+    return this.http.post<User>(url, user, httpOptions).pipe(
+      tap(_ => this.log(`ajouter user id= ${user.id}`)),
+      catchError((this.handleError<any>('ajouter user')))
+    );
+  }
   }

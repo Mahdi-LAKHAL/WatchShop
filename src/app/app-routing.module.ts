@@ -9,6 +9,8 @@ import { ShopComponent } from './components/shop/shop.component';
 import { AddWatchComponent } from './components/add-watch/add-watch.component';
 import { FeaturedProductsComponent } from './components/featured-products/featured-products.component';
 import { DashbordAdminComponent } from './components/dashbord-admin/dashbord-admin.component';
+import { WatchInfoComponent } from './components/watch-info/watch-info.component';
+import { UpdateWatchComponent } from './components/update-watch/update-watch.component';
 
 
 const routes: Routes = [
@@ -21,6 +23,9 @@ const routes: Routes = [
   {path: "addwatch", component: AddWatchComponent},
   {path: "watch", component: FeaturedProductsComponent},
   {path: "dashboard", component: DashbordAdminComponent},
+  {path:"watch/:id" , component: WatchInfoComponent},  
+  {path:"updating/:id" , component: UpdateWatchComponent}
+
 ];
 
 @NgModule({

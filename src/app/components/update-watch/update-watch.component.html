@@ -6,7 +6,7 @@
                 <div class="">
                     <!-- Contact FORM -->
                     <div id="contact_form">
-                        <form #montreForm="ngForm" class="bg-light p-5 montre-form" (ngSubmit)='saveMontre(montreForm.value)'>
+                        <form #montreForm="ngForm" class="bg-light p-5 montre-form" (ngSubmit)='updateWatch(montreForm.value)'>
                             <input class="form-control" type="text" name="name" placeholder="Name" [(ngModel)]="montre.name" [ngModelOptions]="{standalone:true}" />
 
                             <input class="form-control" type="number" name="email" placeholder="Price" [(ngModel)]="montre.price" [ngModelOptions]="{standalone:true}" />
@@ -15,7 +15,7 @@
 
                             <textarea class="form-control" name="description" placeholder="Description" [(ngModel)]="montre.description" [ngModelOptions]="{standalone:true}"></textarea>
                             <div class="col-sm-6 col-sm-offset-3">
-                                <button class="form-control btn btn-login" type="submit">Add Product</button>
+                                <button class="form-control btn btn-login" type="submit">Update Product</button>
                             </div>
                         </form>
                         <div id="contact_results"></div>

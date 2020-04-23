@@ -29,7 +29,12 @@ export class DataService implements InMemoryDbService {
       { id: 7, fName: 'Taha', lName: 'LAgha', email: 'Taha@gmail.com', pwd: '123456789', confirmPwd: '123456789', tel: '54410515', address: 'tunis' },
       { id: 8, fName: 'Taha', lName: 'LAgha', email: 'Taha@gmail.com', pwd: '123456789', confirmPwd: '123456789', tel: '54410515', address: 'tunis' }
     ];
-    return { montres, users };
+    let contacts = [
+      { id: 1, contactName: 'Mahdi', contactTel: 'Lakhal', contactEmail: 'Mahdi@gmail.com', contactSubject: '123456789', contactMsg: '123456789' },
+      { id: 1, contactName: 'Mahdi', contactTel: 'Lakhal', contactEmail: 'Mahdi@gmail.com', contactSubject: '123456789', contactMsg: '123456789' },
+      { id: 1, contactName: 'Mahdi', contactTel: 'Lakhal', contactEmail: 'Mahdi@gmail.com', contactSubject: '123456789', contactMsg: '123456789' },
+      { id: 1, contactName: 'Mahdi', contactTel: 'Lakhal', contactEmail: 'Mahdi@gmail.com', contactSubject: '123456789', contactMsg: '123456789' }];
+    return { montres, users, contacts };
 
   }
 }

@@ -28,6 +28,9 @@ import { DataService } from './services/data.service';
 import { InMemoryWebApiModule, HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { DashbordAdminComponent } from './components/dashbord-admin/dashbord-admin.component';
+import { WatchInfoComponent } from './components/watch-info/watch-info.component';
+import { UpdateWatchComponent } from './components/update-watch/update-watch.component';
+import { SearchWatchComponent } from './components/search-watch/search-watch.component';
 
 
 @NgModule({
@@ -52,7 +55,10 @@ import { DashbordAdminComponent } from './components/dashbord-admin/dashbord-adm
     ContactComponent,
     ShopComponent,
     AddWatchComponent,
-    DashbordAdminComponent
+    DashbordAdminComponent,
+    WatchInfoComponent,
+    UpdateWatchComponent,
+    SearchWatchComponent
   ],
   imports: [
     FormsModule,
