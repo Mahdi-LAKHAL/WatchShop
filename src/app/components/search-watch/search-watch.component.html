@@ -1,11 +1,11 @@
-<!-- <div class="container mt_30">
+<div class="container mt_30">
 
     <div class="row ">
         <div class="col-sm-12 mt_30">
             <div id="product-tab" class="mt_10">
                 <div class="heading-part mb_10 ">
-                    <h2 class="main_title">Search Montre</h2> -->
-<!-- <div [ngClass]="{'info': age < 10,
+                    <h2 class="main_title">Search Montre</h2>
+                    <!-- <div [ngClass]="{'info': age < 10,
                  'warn': age > 10 && age < 20, 
                  'error': age > 30}">{{age}}
 
@@ -15,7 +15,7 @@
                     </li>
                     <div [ngStyle]="{'background-color':lunette === 'verte' ? 'red' : 'blue' }"> {{lunette}}
                         </div> -->
-<!-- <div class="tab-content clearfix box">
+                    <div class="tab-content clearfix box">
                         <div class="" id="">
                             <div class="">
                                 <div class="input-field" style="text-align: center;">
@@ -24,7 +24,7 @@
 
                                 <div class="">
                                     <a *ngFor="let m of montres | async" (click)="gotoDetail(m)" class="">
-                                        <app-product-unit [description]="m.description" [price]="m.price"></app-product-unit>
+                                        <app-product-unit [montre]="m"></app-product-unit>
                                     </a>
                                 </div>
                             </div>
@@ -33,4 +33,5 @@
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
+</div>
