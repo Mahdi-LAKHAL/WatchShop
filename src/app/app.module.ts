@@ -24,8 +24,7 @@ import { ShopComponent } from './components/shop/shop.component';
 import { AddWatchComponent } from './components/add-watch/add-watch.component';
 import { MontreService } from './services/watch.service';
 import { UserService } from './services/user.service';
-import { DataService } from './services/data.service';
-import { InMemoryWebApiModule, HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { DashbordAdminComponent } from './components/dashbord-admin/dashbord-admin.component';
 import { WatchInfoComponent } from './components/watch-info/watch-info.component';
@@ -71,11 +70,10 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
     ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
-    InMemoryWebApiModule.forRoot(DataService),
-    HttpClientInMemoryWebApiModule.forRoot(DataService),
+
     HttpClientModule
   ],
-  providers: [MontreService,UserService, DataService],
+  providers: [MontreService,UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

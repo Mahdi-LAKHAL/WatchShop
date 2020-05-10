@@ -8,7 +8,7 @@ import { Montre } from '../models/montre';
 })
 export class MontreService {
   constructor(private http: HttpClient) { }
-  private montreUrl = 'api/montres';
+  private montreUrl = 'http://localhost:3000/';
   // Log function for Console
   private log(log: string) {
     console.info(log);
@@ -41,7 +41,8 @@ export class MontreService {
   }
   // Add Montre
   addMontre(montre: Montre): Observable<Montre> {
-    const url = `${this.montreUrl}`;
+    const url = `${this.montreUrl}api/addwatch`;
+    console.log("url from FE", url);
     const httpOptions = {
       headers: new HttpHeaders({ 'content-type': 'application/json' })
     };
