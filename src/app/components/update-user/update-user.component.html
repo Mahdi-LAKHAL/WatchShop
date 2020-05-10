@@ -1,0 +1,61 @@
+<!-- Dirty : the field has been modified # Pristine-->
+<!-- Touched if the the user focused on the control and then focused on something else. -->
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="panel-login panel">
+            <div class="panel-heading">
+                <div class="row mb_20 headerTitle">
+                    <h3>Update User Informations</h3>
+                </div>
+                <hr>
+            </div>
+            <form [formGroup]="userForm">
+                <div class="form-group">
+                    <input class="form-control" formControlName="fName" type="text" placeholder="First Name">
+                </div>
+                <div *ngIf="userForm.controls['fName'].invalid && 
+            (userForm.controls['fName'].dirty || userForm.controls['fName'].touched)" class="alert alert-danger">
+                    <div *ngIf="userForm.controls['fName'].errors.required">
+                        FisrtName is required.
+                    </div>
+                    <div *ngIf="userForm.controls['fName'].errors.maxlength">
+                        Max Length : 5
+                    </div>
+                    <div *ngIf="userForm.controls['fName'].errors.minlength">
+                        Min Length : 2
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" formControlName="lName" type="text" placeholder="Last Name">
+                </div>
+                <div *ngIf="userForm.controls['lName'].invalid && (userForm.controls['lName'].dirty || userForm.controls['lName'].touched)" class="alert alert-danger">
+                    <div *ngIf="userForm.controls['lName'].errors.required">
+                        lName is required.
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    <input class="form-control" formControlName="email" type="text" placeholder="Email">
+                </div>
+                <div *ngIf="userForm.controls['email'].invalid && (userForm.controls['email'].dirty || userForm.controls['email'].touched)" class="alert alert-danger">
+                    <div *ngIf="userForm.controls['email'].errors.required">
+                        Email is required.
+                    </div>
+                    <div *ngIf="userForm.controls['email'].errors.email">
+                        Email format
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-sm-offset-3">
+                    <button (click)="updateUser(userForm.value)" type="submit" [disabled]="userForm.pristine || userForm.invalid" class="form-control btn btn-login">
+    Update User
+      </button>
+                </div>
+
+            </form>
+            <!-- <br /> -->
+            <!-- <p>Form value: {{ userForm.value | json }}</p>
+            <p>Form status: {{ userForm.status | json }}</p> -->
+        </div>

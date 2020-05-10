@@ -4,6 +4,10 @@ const express = require('express');
 const mongoose = require('mongoose');
 // Import watch module
 const Watch = require('./models/watch');
+// Import user module
+const User = require('./models/user');
+// Import contact module
+const Contact = require('./models/contact');
 // Create express  APP
 const app = express();
 // Connect BE with MongoDB via mongoose

@@ -11,6 +11,9 @@ import { FeaturedProductsComponent } from './components/featured-products/featur
 import { DashbordAdminComponent } from './components/dashbord-admin/dashbord-admin.component';
 import { WatchInfoComponent } from './components/watch-info/watch-info.component';
 import { UpdateWatchComponent } from './components/update-watch/update-watch.component';
+import { WatchDashboardComponent } from './components/watch-dashboard/watch-dashboard.component';
+import { UserInfoComponent } from './components/user-info/user-info.component';
+import { UpdateUserComponent } from './components/update-user/update-user.component';
 
 
 const routes: Routes = [
@@ -24,7 +27,10 @@ const routes: Routes = [
   {path: "watch", component: FeaturedProductsComponent},
   {path: "dashboard", component: DashbordAdminComponent},
   {path:"watch/:id" , component: WatchInfoComponent},  
-  {path:"updating/:id" , component: UpdateWatchComponent}
+  {path:"updating/:id" , component: UpdateWatchComponent},
+  {path:"user/:id" , component: UserInfoComponent},  
+  {path:"updatinguser/:id" , component: UpdateUserComponent},
+  {path:"watshDashboard" , component: WatchDashboardComponent},
 
 ];
 

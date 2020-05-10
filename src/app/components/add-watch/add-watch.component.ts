@@ -38,7 +38,7 @@ export class AddWatchComponent implements OnInit {
   this.montreService.addMontre( this.montre ).subscribe(
   (response)=> {
     console.log("this is the reponse of post montre", response);
-    const link = [`/dashboard`];
+    const link = [`/watshDashboard`];
     this.router.navigate(link);
   }
   )

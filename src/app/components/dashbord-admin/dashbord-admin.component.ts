@@ -14,6 +14,7 @@ export class DashbordAdminComponent implements OnInit {
 users: User[];
 montres: Montre[];
 montre: Montre;
+user: User;
 tableHeaders : string[];
 tableHeadersMontre: string[];
 id:number;
@@ -30,6 +31,7 @@ id:number;
 
 
     this.getWathTable();
+    this.getUserTable();
   }
 
 displayWatch(id:number) {
@@ -60,6 +62,41 @@ this.router.navigate([`updating/${w.id}`]);
 }
 
 
+
+
+
+
+
+
+
+
+
+displayUser(id:number) {
+  this.router.navigate([`user/${id}`]);
+  
+  }
+  deleteUser(x:User) {
+  this.userService.deleteUser(x).subscribe(
+  response=> {
+  
+  this.getUserTable();
+  }
+  )
+  
+  }
+  getUserTable(){
+    this.userService.getUsers().subscribe (
+      (res)=> { this.users = res;
+   
+      }
+      )
+  
+  }
+  
+  updateUser(u:User){
+  this.router.navigate([`updatinguser/${u.id}`]);
+  
+  }
 
 
 

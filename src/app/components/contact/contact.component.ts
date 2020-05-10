@@ -19,16 +19,18 @@ id: number;
   ngOnInit(): void {
 this.contact=new Contact(this.id,"","","","","");
 this.contactForm = this.formBuilder.group({ 
-  contactName: [''],
-  contactEmail:[''],
+contactName: [''],
+contactEmail:[''],
 contactTel: [''],
 contactSubject:[''],
 contactMsg:['']
 })
   }
-//   saveContact( contactForm:any){
-// console.log("here my contact values", this.contact);
-// this.contactService.addContact(this.contact).subscribe()
+  saveContact( contactForm:any){
+console.log("here my contact values", this.contact);
+this.contactService.addContact(this.contact).subscribe(
+  
+)
 
-//   }
+  }
 }

@@ -1,22 +1,26 @@
-<div class="row ">
-    <div class="col-sm-12 mt_30">
-        <!-- =====  PRODUCT TAB  ===== -->
-        <div id="product-tab" class="mt_10">
-            <div class="heading-part mb_10 ">
-                <h2 class="main_title">Featured Products</h2>
-            </div>
-            <ul class="nav text-right">
-                <li class="active"> <a href="index.html#nArrivals" data-toggle="tab">New Arrivals</a> </li>
-                <li><a href="index.html#Bestsellers" data-toggle="tab">Bestsellers</a> </li>
-                <li><a href="index.html#Featured" data-toggle="tab">Featured</a> </li>
-            </ul>
-            <div class="tab-content clearfix box">
-                <div class="tab-pane active" id="nArrivals">
-                    <div class="nArrivals owl-carousel">
-                        <div class="item" *ngFor="let i of montres">
-                            <!-- <app-watch [description]="i.description" [price]="i.price"></app-watch> -->
-                            <app-product-unit [montre]="i"></app-product-unit>
+<!-- =====  PRODUCT TAB  ===== -->
+<div class="mt_60">
+    <div class="heading-part mb_10 ">
+        <h2 class="main_title"> FEATURED PRODUCTS</h2>
+    </div>
+    <div class="latest_pro box">
+        <div class="latest owl-carousel">
+            <div class="product-grid">
+                <div class="item">
+                    <div class="product-thumb">
+                        <div class="image product-imageblock">
+
+                            <div class="button-group text-center">
+                                <div class="wishlist"><a href="index.html#"><span>wishlist</span></a></div>
+                                <div class="quickview"><a href="index.html#"><span>Quick View</span></a></div>
+                                <div class="compare"><a href="index.html#"><span>Compare</span></a></div>
+                                <div class="add-to-cart"><a href="index.html#"><span>Add to cart</span></a></div>
+                            </div>
+
+
                         </div>
                     </div>
-                </div>
-            </div>
+                    <div class="caption product-detail text-center" *ngFor="let i of montres">
+                        <!-- <app-watch [description]="i.description" [price]="i.price"></app-watch> -->
+                        <app-product-unit [montre]="i"></app-product-unit>
+                    </div>

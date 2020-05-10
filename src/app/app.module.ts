@@ -31,6 +31,9 @@ import { DashbordAdminComponent } from './components/dashbord-admin/dashbord-adm
 import { WatchInfoComponent } from './components/watch-info/watch-info.component';
 import { UpdateWatchComponent } from './components/update-watch/update-watch.component';
 import { SearchWatchComponent } from './components/search-watch/search-watch.component';
+import { WatchDashboardComponent } from './components/watch-dashboard/watch-dashboard.component';
+import { UpdateUserComponent } from './components/update-user/update-user.component';
+import { UserInfoComponent } from './components/user-info/user-info.component';
 
 
 @NgModule({
@@ -58,7 +61,10 @@ import { SearchWatchComponent } from './components/search-watch/search-watch.com
     DashbordAdminComponent,
     WatchInfoComponent,
     UpdateWatchComponent,
-    SearchWatchComponent
+    SearchWatchComponent,
+    WatchDashboardComponent,
+    UpdateUserComponent,
+    UserInfoComponent
   ],
   imports: [
     FormsModule,

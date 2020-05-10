@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { Montre } from '../models/montre';
+import { Contact } from '../models/contact';
 import { tap, catchError } from 'rxjs/operators';
 
 @Injectable({
@@ -9,7 +9,7 @@ import { tap, catchError } from 'rxjs/operators';
 })
 export class ContactService {
 constructor(private http: HttpClient) { }
-private montreUrl = 'api/montres';
+private contactUrl = 'api/contacts';
 // Log function for Console
 private log(log: string) {
   console.info(log);
@@ -22,33 +22,33 @@ private handleError<T>(operation = 'operation', result?: T) {
     return of(result as T);
   };
 }
-//Return all montres
-getMontres(): Observable<Montre[]> {
-  return this.http.get<Montre[]>(this.montreUrl).pipe(
-    tap(_ => this.log('fetched montre')),
-    catchError(this.handleError('get Montres', []))
+//Return all contacts 
+getContact(): Observable<Contact[]> {
+  return this.http.get<Contact[]>(this.contactUrl).pipe(
+    tap(_ => this.log('fetched contact')),
+    catchError(this.handleError('get Contacts', []))
   );
 }
-//   // Delete Montre
-//   deleteMontre(montre: Montre): Observable<Montre> {
-//     const url = `${this.montreUrl}/${montre.id}`;
-//     const httpOptions = {
-//       headers: new HttpHeaders({ 'content-type': 'application/json' })
-//     };
-//     return this.http.delete<Montre>(url, httpOptions).pipe(
-//       tap(_ => this.log(`delete montre id= ${montre.id}`)),
-//       catchError((this.handleError<any>('Delete montre')))
-//     );
-//   }
-// Add Montre
-addMontre(montre: Montre): Observable<Montre> {
-  const url = `${this.montreUrl}`;
+// Delete Contact
+  deleteContact(contact: Contact): Observable<Contact> {
+    const url = `${this.contactUrl}/${contact.id}`;
+    const httpOptions = {
+      headers: new HttpHeaders({ 'content-type': 'application/json' })
+    };
+    return this.http.delete<Contact>(url, httpOptions).pipe(
+      tap(_ => this.log(`delete montre id= ${contact.id}`)),
+      catchError((this.handleError<any>('Delete contact')))
+    );
+  }
+// Add Contact
+addContact(contact: Contact): Observable<Contact> {
+  const url = `${this.contactUrl}`;
   const httpOptions = {
     headers: new HttpHeaders({ 'content-type': 'application/json' })
   };
-  return this.http.post<Montre>(url, montre, httpOptions).pipe(
-    tap(_ => this.log(`ajouter montre id= ${montre.id}`)),
-    catchError((this.handleError<any>('ajouter montre')))
+  return this.http.post<Contact>(url, contact, httpOptions).pipe(
+    tap(_ => this.log(`ajouter montre id= ${contact.id}`)),
+    catchError((this.handleError<any>('ajouter contact')))
   );
 }
 // // Display Montre by Id
