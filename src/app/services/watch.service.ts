@@ -8,6 +8,8 @@ import { Montre } from '../models/montre';
 })
 export class MontreService {
   constructor(private http: HttpClient) { }
+
+  //Endpoint
   private montreUrl = 'http://localhost:3000/';
   // Log function for Console
   private log(log: string) {
@@ -22,8 +24,9 @@ export class MontreService {
     };
   }
   //Return all montres
-  getMontres(): Observable<Montre[]> {
-    return this.http.get<Montre[]>(this.montreUrl).pipe(
+  getMontres() {
+  const  url= `${this.montreUrl}api/allproducts`
+    return this.http.get<{watches: any, message:String}>(url).pipe(
       tap(_ => this.log('fetched montre')),
       catchError(this.handleError('get Montres', []))
     );

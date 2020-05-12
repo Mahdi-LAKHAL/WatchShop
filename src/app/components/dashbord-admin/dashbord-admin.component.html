@@ -28,12 +28,12 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor=" let m of montres">
-                <th scope="row">{{m.id}}</th>
+            <tr *ngFor=" let m of data.watches">
+                <th scope="row">{{m._id}}</th>
                 <td>{{m.price}}</td>
                 <td>{{m.marque}}</td>
-                <td>{{m.name}}</td>
                 <td>{{m.description}}</td>
+                <!-- <td>{{m.image}}</td> -->
                 <td><button class="btn btn-info" (click)="displayWatch(m.id)">Display</button></td>
                 <td><button class="btn btn-warning" (click)="updateWatch(m)">Edit</button></td>
                 <td><button class="btn btn-danger" (click)="deleteWatch(m)">Delete</button></td>

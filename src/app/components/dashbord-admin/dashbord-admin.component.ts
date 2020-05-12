@@ -18,11 +18,12 @@ user: User;
 tableHeaders : string[];
 tableHeadersMontre: string[];
 id:number;
+data:any
   constructor( private userService: UserService, private montreService: MontreService,  private router: Router ) { }
 
   ngOnInit(){ 
     this.tableHeaders= ["ID", "First Name" , "Last Name", "Email"];
-    this.tableHeadersMontre= ["ID", "Price" , "Marque", "Name", "Description"];
+    this.tableHeadersMontre= ["ID", "Price" , "Marque", "Description","","",""];
     
     this.userService.getUsers().subscribe (
     (data)=> { this.users = data;
@@ -49,7 +50,9 @@ this.getWathTable();
 }
 getWathTable(){
   this.montreService.getMontres().subscribe (
-    (data)=> { this.montres = data;
+    (data)=> { console.log(data);
+    this.data=data
+    
  
     }
     )

@@ -51,7 +51,7 @@ app.use((req, res, next) => {
 //         }
 //     })
 // })
-
+// Add New Product
 app.post('/api/addwatch', (req, res) => {
     console.log('Post from FE');
     console.log(req.body);
@@ -63,7 +63,28 @@ app.post('/api/addwatch', (req, res) => {
         description: req.body.description
     })
     w.save();
+    // Sending response to FE
+    //status 201 = insertion done
+
     res.status(201).json({ message: " watch added succefully" })
+})
+
+
+// get all products 
+//url : http://localhost:3000/api/allproducts
+
+app.get('/api/allproducts', (req, res) => {
+
+    Watch.find((err, documents) => {
+
+        //status 200 = OK
+        res.status(200).json({
+            message: "List of watches fetched",
+            watches: documents
+        })
+
+    });
+
 })
 
 module.exports = app;
