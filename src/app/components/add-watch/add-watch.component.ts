@@ -24,7 +24,7 @@ export class AddWatchComponent implements OnInit {
 
   ngOnInit() {
     console.log("montre added", this.montre);
-    this.montre = new Montre(this.id, this.price , '', '', '','');
+    this.montre = new Montre('', this.price , '', '', '','');
       this.montreForm = this.formBuilder.group({
         name: [''],
         price: [''],

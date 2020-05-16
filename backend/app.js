@@ -87,4 +87,66 @@ app.get('/api/allproducts', (req, res) => {
 
 })
 
+//Get Watch ByID
+//URL : http://localhost:3000/api/watches/:id
+
+app.get('/api/watches/:id', (req, res) => {
+    Watch.find({ _id: req.params.id }).then(
+        watch => {
+            if (watch) {
+                res.status(200).json(watch);
+
+            } else {
+                console.log("Watch not Found");
+                res.status(404).json({
+                    message: "404 Not Found"
+                })
+            }
+        }
+    )
+});
+
+//delete Watch ByID
+//URL : http://localhost:3000/api/watches/:id
+
+app.delete('/api/watches/:id', (req, res) => {
+    Watch.deleteOne({ _id: req.params.id }).then(
+        data => {
+            console.log("deleted", data);
+
+        }
+    )
+    res.status(200).json({
+        message: "Deleted Successfully "
+    });
+});
+
+//update Watch ByID
+//URL : http://localhost:3000/api/watches/:id
+
+app.put('/api/watches/:id', (req, res) => {
+
+    console.log("req Body", req.body);
+
+    const watch = new Watch({
+        _id: req.body._id,
+        price: req.body.price,
+        marque: req.body.marque,
+        image: req.body.image,
+        description: req.body.description
+    });
+    Watch.updateOne({ _id: req.body._id }, watch).then(
+        data => {
+            if (data) {
+                res.status(200).json({
+                    message: "Updates successfully"
+                })
+            } else {
+                console.log("Error Update");
+
+            }
+        }
+    )
+})
+
 module.exports = app;

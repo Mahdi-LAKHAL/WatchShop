@@ -12,7 +12,6 @@ import { Router } from '@angular/router';
 })
 export class DashbordAdminComponent implements OnInit {
 users: User[];
-montres: Montre[];
 montre: Montre;
 user: User;
 tableHeaders : string[];
@@ -35,7 +34,7 @@ data:any
     this.getUserTable();
   }
 
-displayWatch(id:number) {
+displayWatch(id:string) {
 this.router.navigate([`watch/${id}`]);
 
 }
@@ -52,7 +51,6 @@ getWathTable(){
   this.montreService.getMontres().subscribe (
     (data)=> { console.log(data);
     this.data=data
-    
  
     }
     )
@@ -60,7 +58,7 @@ getWathTable(){
 }
 
 updateWatch(w:Montre){
-this.router.navigate([`updating/${w.id}`]);
+this.router.navigate([`updating/${w._id}`]);
 
 }
 

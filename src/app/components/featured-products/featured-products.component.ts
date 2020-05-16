@@ -9,13 +9,15 @@ import { MontreService } from 'src/app/services/watch.service';
 })
 export class FeaturedProductsComponent implements OnInit {
   montres: Montre[];
+  data:any;
   constructor(private montreService: MontreService) { }
 
   ngOnInit() {
 
     this.montreService.getMontres().subscribe(
-      (data) => {
-        this.montres = data;
+      (data) => { console.log(data);
+      
+        this.data = data;
       }
     );
   }

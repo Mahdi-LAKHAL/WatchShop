@@ -39,7 +39,7 @@ export class SearchWatchComponent implements OnInit {
 	}
 
 	gotoDetail(montre: Montre): void {
-		let link = ['/montres', montre.id];
+		let link = ['/montres', montre._id];
 		this.router.navigate(link);
 	}
 

@@ -1,6 +1,6 @@
 export class Montre {
     constructor (
-        public id:number,
+        public _id:string,
         public price:number,
         public name:string,
         public marque:string,

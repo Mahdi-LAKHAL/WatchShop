@@ -33,12 +33,9 @@ export class MontreService {
   }
   // Delete Montre
   deleteMontre(montre: Montre): Observable<Montre> {
-    const url = `${this.montreUrl}/${montre.id}`;
-    const httpOptions = {
-      headers: new HttpHeaders({ 'content-type': 'application/json' })
-    };
-    return this.http.delete<Montre>(url, httpOptions).pipe(
-      tap(_ => this.log(`delete montre id= ${montre.id}`)),
+    const url = `${this.montreUrl}api/watches/${montre._id}`;
+    return this.http.delete<Montre>(url).pipe(
+      tap(_ => this.log(`delete montre id= ${montre._id}`)),
       catchError((this.handleError<any>('Delete montre')))
     );
   }
@@ -50,13 +47,13 @@ export class MontreService {
       headers: new HttpHeaders({ 'content-type': 'application/json' })
     };
     return this.http.post<Montre>(url, montre, httpOptions).pipe(
-      tap(_ => this.log(`ajouter montre id= ${montre.id}`)),
+      tap(_ => this.log(`ajouter montre id= ${montre._id}`)),
       catchError((this.handleError<any>('ajouter montre')))
     );
   }
   // Display Montre by Id
-  displayMontre(id: number): Observable<Montre> {
-    const url = `${this.montreUrl}/${id}`;
+  displayMontre(id: string): Observable<Montre> {
+    const url = `${this.montreUrl}api/watches/${id}`;
     const httpOptions = {
       headers: new HttpHeaders({ 'content-type': 'application/json' })
     };
@@ -67,14 +64,13 @@ export class MontreService {
   }
    // Update Montre by Id
   updateMontre(montre: Montre): Observable<Montre> {
-    const httpOptions = {
-      headers: new HttpHeaders({ 'content-Type': 'application/json'})
-    };
-    return this.http.put(this.montreUrl, montre, httpOptions).pipe(
-      tap(_ => this.log(`updated montre id=${montre.id}`)),
+    const url = `${this.montreUrl}api/watches/${montre._id}`;
+    return this.http.put(url, montre).pipe(
+      tap(_ => this.log(`updated montre id=${montre._id}`)),
       catchError(this.handleError<any>('updated montre'))
     );
   }
+
    // Search Montre by Id
   searchMontre(term: string): Observable <Montre[]> {
     if (!term.trim()){

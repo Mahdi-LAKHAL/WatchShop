@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class WatchDashboardComponent implements OnInit  {
 montres: Montre[];
 montre: Montre;
-
+data: any;
 tableHeadersMontre: string[];
 id:number;
   constructor( private montreService: MontreService,  private router: Router ) { }
@@ -22,7 +22,7 @@ id:number;
     this.getWathTable();
   }
 
-displayWatch(id:number) {
+displayWatch(id:string) {
 this.router.navigate([`watch/${id}`]);
 
 }
@@ -37,7 +37,7 @@ this.getWathTable();
 }
 getWathTable(){
   this.montreService.getMontres().subscribe (
-    (data)=> { this.montres = data;
+    (data)=> { this.data = data;
  
     }
     )
@@ -45,7 +45,7 @@ getWathTable(){
 }
 
 updateWatch(w:Montre){
-this.router.navigate([`updating/${w.id}`]);
+this.router.navigate([`updating/${w._id}`]);
 
 }
 

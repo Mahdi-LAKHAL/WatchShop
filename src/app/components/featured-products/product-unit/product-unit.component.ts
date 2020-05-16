@@ -8,9 +8,6 @@ import { Montre } from 'src/app/models/montre';
 })
 export class ProductUnitComponent implements OnInit {
 
-
-  @Input() description: string;
-  @Input() price: string;
   @Input() montre: Montre;
   
   constructor() { }

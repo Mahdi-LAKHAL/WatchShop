@@ -8,15 +8,15 @@ import { MontreService } from 'src/app/services/watch.service';
   styleUrls: ['./weekly-deal.component.css']
 })
 export class WeeklyDealComponent implements OnInit {
-
-  montres: Montre[];
+data:any;
+  montres: any;
   constructor(private montreService: MontreService) { }
 
   ngOnInit() {
 
     this.montreService.getMontres().subscribe(
       (data) => {
-        this.montres = data;
+        this.data = data;
       }
     );
   }
