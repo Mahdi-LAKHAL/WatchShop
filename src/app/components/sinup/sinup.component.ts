@@ -18,13 +18,13 @@ export class SinupComponent {
     private userService: UserService,
     private fb: FormBuilder,
     private router: Router) {
-    this.user = new User(1, '', '', '', '', '', '', '');
+    this.user = new User('', '', '', '', '', '', '', '');
     this.createForm();
   }
 
   createForm() {
     this.userForm = this.fb.group({
-      fName: ['', [Validators.required, Validators.maxLength(5), Validators.minLength(2)]],
+      fName: ['', [Validators.required, Validators.maxLength(20), Validators.minLength(3)]],
       lName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
      

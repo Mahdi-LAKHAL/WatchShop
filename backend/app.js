@@ -10,6 +10,8 @@ const Watch = require('./models/watch');
 const User = require('./models/user');
 // Import contact module
 const Contact = require('./models/contact');
+// Import User Routes
+const userRoutes = require('./routes/user');
 // Create express  APP
 const app = express();
 // Connect BE with MongoDB via mongoose
@@ -148,5 +150,8 @@ app.put('/api/watches/:id', (req, res) => {
         }
     )
 })
+
+app.use('/api/user', userRoutes);
+
 
 module.exports = app;

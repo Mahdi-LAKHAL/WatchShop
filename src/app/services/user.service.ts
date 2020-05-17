@@ -10,7 +10,7 @@ import { User } from '../models/User';
 })
 export class UserService {
   constructor(private http: HttpClient) { }
-  private adminUrl = 'api/users';
+  private adminUrl = 'http://localhost:3000/api/user/';
  
   // Log function for Console
   private log(log: string) {
@@ -33,12 +33,9 @@ export class UserService {
   }
     //Sign up for a new User
   addUser(user: User): Observable<User> {
-    const url = `${this.adminUrl}`;
-    const httpOptions = {
-      headers: new HttpHeaders({ 'content-type': 'application/json' })
-    };
-    return this.http.post<User>(url, user, httpOptions).pipe(
-      tap(_ => this.log(`ajouter user id= ${user.id}`)),
+    const url = `${this.adminUrl}signup`;
+    return this.http.post<User>(url, user).pipe(
+      tap(_ => this.log(`ajouter user id= ${user._id}`)),
       catchError((this.handleError<any>('ajouter user')))
     );
   }
@@ -59,7 +56,7 @@ export class UserService {
       headers: new HttpHeaders({ 'content-Type': 'application/json'})
     };
     return this.http.put(this.adminUrl, user, httpOptions).pipe(
-      tap(_ => this.log(`updated user id=${user.id}`)),
+      tap(_ => this.log(`updated user id=${user._id}`)),
       catchError(this.handleError<any>('updated user'))
     );
   }
@@ -75,12 +72,12 @@ export class UserService {
   }
   // Delete User
   deleteUser(user: User): Observable<User> {
-    const url = `${this.adminUrl}/${user.id}`;
+    const url = `${this.adminUrl}/${user._id}`;
     const httpOptions = {
       headers: new HttpHeaders({ 'content-type': 'application/json' })
     };
     return this.http.delete<User>(url, httpOptions).pipe(
-      tap(_ => this.log(`delete user id= ${user.id}`)),
+      tap(_ => this.log(`delete user id= ${user._id}`)),
       catchError((this.handleError<any>('Delete user')))
     );
   }

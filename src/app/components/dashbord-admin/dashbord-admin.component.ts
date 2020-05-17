@@ -95,7 +95,7 @@ displayUser(id:number) {
   }
   
   updateUser(u:User){
-  this.router.navigate([`updatinguser/${u.id}`]);
+  this.router.navigate([`updatinguser/${u._id}`]);
   
   }
 
