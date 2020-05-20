@@ -6,8 +6,8 @@ const router = express.Router();
 const User = require('../models/user');
 // Bcrypt
 const bcrypt = require('bcrypt');
-
-
+//JWT plugin
+const jwt = require('jsonwebtoken');
 // Add use to DB
 router.post('/signup', (req, res) => {
 
@@ -48,7 +48,38 @@ router.post('/signup', (req, res) => {
 
 //Login
 router.post('/signin', (req, res) => {
+    let getedUser;
+    User.findOne({ email: req.body.email }).then(
+            user => {
+                if (!user) {
+                    return res.status(401).json({
+                        message: 'Email invalid'
+                    })
+                }
+                getedUser = user;
+                console.log("getted user", getedUser);
 
+                return bcrypt.compare(req.body.password, getedUser.password);
+            })
+        .then(result => {
+            if (!result) {
+                return res.status(401).json({
+                    message: 'Password invalid'
+                })
+            }
+            //Email and password are valid
+            //Generate Token
+            const token = jwt.sign({ email: getedUser.email, userId: getedUser._id }, 'secret_key', { expiresIn: '1h' });
+            console.log('this token', token);
+
+            res.status(200).json({
+                message: "success Authentification",
+                token: token
+            })
+        })
+        .catch(err => {
+
+        })
 });
 
 module.exports = router;
