@@ -25,7 +25,7 @@ import { AddWatchComponent } from './components/add-watch/add-watch.component';
 import { MontreService } from './services/watch.service';
 import { UserService } from './services/user.service';
 
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DashbordAdminComponent } from './components/dashbord-admin/dashbord-admin.component';
 import { WatchInfoComponent } from './components/watch-info/watch-info.component';
 import { UpdateWatchComponent } from './components/update-watch/update-watch.component';
@@ -33,6 +33,7 @@ import { SearchWatchComponent } from './components/search-watch/search-watch.com
 import { WatchDashboardComponent } from './components/watch-dashboard/watch-dashboard.component';
 import { UpdateUserComponent } from './components/update-user/update-user.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
+import { AuthInterceptor } from './services/auth-intercepter';
 
 
 @NgModule({
@@ -73,7 +74,7 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
 
     HttpClientModule
   ],
-  providers: [MontreService,UserService],
+  providers: [MontreService,UserService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

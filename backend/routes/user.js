@@ -73,8 +73,8 @@ router.post('/signin', (req, res) => {
             console.log('this token', token);
 
             res.status(200).json({
-                message: "success Authentification",
-                token: token
+                token: token,
+                expiresIn: 3600,
             })
         })
         .catch(err => {

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { User } from '../models/User';
+import { Router } from '@angular/router';
 
 
 
@@ -10,9 +11,19 @@ import { User } from '../models/User';
   providedIn: 'root'
 })
 export class UserService {
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) { }
   private adminUrl = 'http://localhost:3000/api/user/';
- 
+
+  // Authentification Variables 
+
+  private token: string;
+  private isUserAuthenticated = false;
+  private authStatusListener = new Subject<boolean>();
+  private tokenTimer: any;
+
   // Log function for Console
   private log(log: string) {
     console.info(log);
@@ -32,7 +43,7 @@ export class UserService {
       catchError(this.handleError('get user', []))
     );
   }
-    //Sign up for a new User
+  //Sign up for a new User
   addUser(user: User): Observable<User> {
     const url = `${this.adminUrl}signup`;
     return this.http.post<User>(url, user).pipe(
@@ -40,8 +51,8 @@ export class UserService {
       catchError((this.handleError<any>('ajouter user')))
     );
   }
-   // Display User by Id
-   displayUser(id: number): Observable<User> {
+  // Display User by Id
+  displayUser(id: number): Observable<User> {
     const url = `${this.adminUrl}/${id}`;
     const httpOptions = {
       headers: new HttpHeaders({ 'content-type': 'application/json' })
@@ -51,25 +62,25 @@ export class UserService {
       catchError((this.handleError<any>('display user')))
     );
   }
-   // Update User by Id
+  // Update User by Id
   updateUser(user: User): Observable<User> {
     const httpOptions = {
-      headers: new HttpHeaders({ 'content-Type': 'application/json'})
+      headers: new HttpHeaders({ 'content-Type': 'application/json' })
     };
     return this.http.put(this.adminUrl, user, httpOptions).pipe(
       tap(_ => this.log(`updated user id=${user._id}`)),
       catchError(this.handleError<any>('updated user'))
     );
   }
-   // Search User by Id
-  searchUSer(term: string): Observable <User[]> {
-    if (!term.trim()){
-     return of([]);
-   }
-   return this.http.get<User[]>(`${this.adminUrl}/?fName=${term}`).pipe(
-   tap(_ => this.log(`found user matching "${term}"`)),
-   catchError(this.handleError<User []>('search montres', []))
-   );
+  // Search User by Id
+  searchUSer(term: string): Observable<User[]> {
+    if (!term.trim()) {
+      return of([]);
+    }
+    return this.http.get<User[]>(`${this.adminUrl}/?fName=${term}`).pipe(
+      tap(_ => this.log(`found user matching "${term}"`)),
+      catchError(this.handleError<User[]>('search montres', []))
+    );
   }
   // Delete User
   deleteUser(user: User): Observable<User> {
@@ -86,22 +97,89 @@ export class UserService {
 
   // Signin 
 
-login(user:any){
-console.log("Here in login service", user);
-const url= `${this.adminUrl}signin`; 
-console.log("my url", url);
+  login(user: any) {
+    console.log("Here in login service", user);
+    const url = `${this.adminUrl}signin`;
+    console.log("my url", url);
 
-this.http.post(url, user).subscribe(
-  res => {
-  console.log("res",res);
-  
+    return this.http.post<{ token: string, expiresIn: number }>(url, user).subscribe(
+      res => {
+        console.log("res", res);
+        const token = res.token;
+        this.token = token;
+        if (token) {
+          const expiresInDuration = res.expiresIn;
+          this.setAuthTimer(expiresInDuration);
+          this.isUserAuthenticated = true;
+          this.authStatusListener.next(true);
+          const now = new Date();
+          const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
+          this.saveAuthData(token, expirationDate);
+          this.router.navigate(['/dashboard']);
+        }
+      }
+    );
   }
-);
+
+  getToken() {
+    return this.token;
+  }
+
+  getAuthStatusListener() {
+    return this.authStatusListener.asObservable();
+  }
+
+  isUserAuth() {
+    return this.isUserAuthenticated;
+  }
+  autoAuthUser() {
+    const token = localStorage.getItem('token');
+    const expirationDate = localStorage.getItem('expiration');
+    if (!token || !expirationDate) {
+      return;
+    }
+    const now = new Date();
+    const expiresIn = new Date(expirationDate).getTime() - now.getTime();
+
+    console.log("expiresIn", expiresIn);
+
+
+    if (expiresIn) {
+      this.token = token;
+      this.isUserAuthenticated = true;
+      this.setAuthTimer(expiresIn / 1000);
+      this.authStatusListener.next(true);
+    }
+  }
+
+  logout() {
+    this.clearAuthData();
+    this.isUserAuthenticated = false;
+    this.authStatusListener.next(false);
+    this.router.navigate(['/']);
+    clearTimeout(this.tokenTimer);
+
+  }
+  private setAuthTimer(duration: number) {
+    console.log('Set Timer', duration);
+
+    this.tokenTimer = setTimeout(() => {
+      this.logout();
+    }, duration * 1000);
+  }
+  private saveAuthData(token: string, expirationDate: Date) {
+    localStorage.setItem('token', 'Bearer ' + token);
+    localStorage.setItem('expiration', expirationDate.toISOString());
+  }
+  private clearAuthData() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('expiration');
+  }
+
 
 }
-}
 
 
-  
+
 
 

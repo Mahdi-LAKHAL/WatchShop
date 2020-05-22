@@ -36,7 +36,7 @@
                 </div>
                 <div class="col-xs-12 col-sm-8">
                     <ul class="header-top-right text-right">
-                        <li class="account"><a href="login.html">My Account</a></li>
+                        <!-- <li class="account"><a *ngIf="isUserAuthenticated" routerLink="/dashboard">{{}}</a></li> -->
                         <li class="language dropdown"> <span class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">Language <span class="caret"></span> </span>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                 <li><a href="index.html#">English</a></li>
@@ -212,11 +212,12 @@
                                 <li> <a href="single_blog.html">Single Post</a></li>
                             </ul>
                         </li>
-                        <li> <a routerLink="/aboutus">About us</a></li>
-                        <li> <a routerLink="/contact">Contact Us</a></li>
-                        <li> <a routerLink="/signin">Signin</a></li>
-                        <li> <a routerLink="/signup">Signup</a></li>
-                        <li> <a routerLink="/addwatch">Add Watch</a></li>
+                        <li> <a *ngIf="isUserAuthenticated" routerLink="/dashboard"> Dashboard </a></li>
+                        <li> <a *ngIf="isUserAuthenticated" routerLink="/contact">Contact Us</a></li>
+                        <li> <a *ngIf="!isUserAuthenticated" routerLink="/signin">Signin</a></li>
+                        <li> <a *ngIf="isUserAuthenticated" (click)=logoutFromComponent()>signout</a></li>
+                        <li> <a *ngIf="!isUserAuthenticated" routerLink="/signup">Signup</a></li>
+                        <li> <a *ngIf="isUserAuthenticated" routerLink="/addwatch">Add Watch</a></li>
 
                     </ul>
                 </div>

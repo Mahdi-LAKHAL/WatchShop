@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-header',
@@ -8,26 +10,25 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-lName:string="lakhal";
-fName: string="mahdi";
-fullName: string;
-lenghtFullName: number;
-res:string;
-  constructor(private router: Router) { }
+  isUserAuthenticated = false;
+  authListenerSubscribtion: Subscription;
 
-ngOnInit() {
-this.fullName= this.concater(this.fName, this.lName);
-this.lenghtFullName= this.fullName.length;
-}
+  constructor(
+    private router: Router,
+    private userService: UserService
+  ) { }
 
-concater(a:string, b:string) {
-// console.log("a+b", a+b);
-return a+" "+b;
-}
+  ngOnInit() {
+    this.isUserAuthenticated = this.userService.isUserAuth();
+    this.authListenerSubscribtion = this.userService.getAuthStatusListener().subscribe(
+      isAuthentificated => {
+        this.isUserAuthenticated = isAuthentificated;
+      }
+    )
+  }
 
-lengtFullName(a:string) {
-this.res=(a.length>20) ? "red" : "blue";
-return this.res;
-}
-
+  logoutFromComponent() {
+    console.log('logout from component');
+    this.userService.logout()
+  }
 }

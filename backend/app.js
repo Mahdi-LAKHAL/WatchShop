@@ -12,6 +12,8 @@ const User = require('./models/user');
 const Contact = require('./models/contact');
 // Import User Routes
 const userRoutes = require('./routes/user');
+// Import Auth module
+const auth = require('./auth/auth');
 // Create express  APP
 const app = express();
 // Connect BE with MongoDB via mongoose
@@ -22,7 +24,7 @@ app.use(bodyParser.json());
 
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("Access-Control-Allow-Headers", "Origin, Accept, Content-Type, X-Requested-with");
+    res.setHeader("Access-Control-Allow-Headers", "Origin, Accept, Content-Type, X-Requested-with, Authorization");
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS, PATCH, PUT");
     next();
 });
