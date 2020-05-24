@@ -56,7 +56,7 @@ app.use((req, res, next) => {
 //     })
 // })
 // Add New Product
-app.post('/api/addwatch', (req, res) => {
+app.post('/api/addwatch', auth, (req, res) => {
     console.log('Post from FE');
     console.log(req.body);
 
@@ -113,7 +113,7 @@ app.get('/api/watches/:id', (req, res) => {
 //delete Watch ByID
 //URL : http://localhost:3000/api/watches/:id
 
-app.delete('/api/watches/:id', (req, res) => {
+app.delete('/api/watches/:id', auth, (req, res) => {
     Watch.deleteOne({ _id: req.params.id }).then(
         data => {
             console.log("deleted", data);
@@ -128,7 +128,7 @@ app.delete('/api/watches/:id', (req, res) => {
 //update Watch ByID
 //URL : http://localhost:3000/api/watches/:id
 
-app.put('/api/watches/:id', (req, res) => {
+app.put('/api/watches/:id', auth, (req, res) => {
 
     console.log("req Body", req.body);
 

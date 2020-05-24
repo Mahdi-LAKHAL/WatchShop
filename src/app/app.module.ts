@@ -24,7 +24,6 @@ import { ShopComponent } from './components/shop/shop.component';
 import { AddWatchComponent } from './components/add-watch/add-watch.component';
 import { MontreService } from './services/watch.service';
 import { UserService } from './services/user.service';
-
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DashbordAdminComponent } from './components/dashbord-admin/dashbord-admin.component';
 import { WatchInfoComponent } from './components/watch-info/watch-info.component';
@@ -34,6 +33,7 @@ import { WatchDashboardComponent } from './components/watch-dashboard/watch-dash
 import { UpdateUserComponent } from './components/update-user/update-user.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { AuthInterceptor } from './services/auth-intercepter';
+import { AuthGuardService } from './services/auth-guard.service';
 
 
 @NgModule({
@@ -74,7 +74,7 @@ import { AuthInterceptor } from './services/auth-intercepter';
 
     HttpClientModule
   ],
-  providers: [MontreService,UserService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
+  providers: [MontreService,UserService,AuthGuardService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -29,7 +29,8 @@ export class AddWatchComponent implements OnInit {
         name: [''],
         price: [''],
         description: [''],
-        marque: ['']
+        marque: [''],
+        Image: ['']
       });
   }
   saveMontre(montre: any) {

@@ -14,6 +14,7 @@ import { UpdateWatchComponent } from './components/update-watch/update-watch.com
 import { WatchDashboardComponent } from './components/watch-dashboard/watch-dashboard.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { UpdateUserComponent } from './components/update-user/update-user.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
 
 const routes: Routes = [
@@ -23,14 +24,14 @@ const routes: Routes = [
   {path: "aboutus", component: AboutusComponent},
   {path: "contact", component: ContactComponent},
   {path: "shop", component: ShopComponent},
-  {path: "addwatch", component: AddWatchComponent},
+  {path: "addwatch", component: AddWatchComponent,canActivate:[AuthGuardService]},
   {path: "watch", component: FeaturedProductsComponent},
-  {path: "dashboard", component: DashbordAdminComponent},
+  {path: "dashboard", component: DashbordAdminComponent, canActivate:[AuthGuardService]},
   {path:"watch/:id" , component: WatchInfoComponent},  
-  {path:"updating/:id" , component: UpdateWatchComponent},
+  {path:"updating/:id" , component: UpdateWatchComponent,canActivate:[AuthGuardService]},
   {path:"user/:id" , component: UserInfoComponent},  
-  {path:"updatinguser/:id" , component: UpdateUserComponent},
-  {path:"watshDashboard" , component: WatchDashboardComponent},
+  {path:"updatinguser/:id" , component: UpdateUserComponent,canActivate:[AuthGuardService]},
+  {path:"watshDashboard" , component: WatchDashboardComponent,canActivate:[AuthGuardService]},
 
 ];
 

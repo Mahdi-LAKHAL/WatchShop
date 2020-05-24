@@ -17,7 +17,11 @@
                     <input class="form-control" style="margin-top: 10px;" type="text" name="marque" placeholder="Marque" [(ngModel)]="montre.marque" [ngModelOptions]="{standalone:true}" />
 
                     <textarea class="form-control" style="margin-top: 10px;" name="description" placeholder="Description" [(ngModel)]="montre.description" [ngModelOptions]="{standalone:true}"></textarea>
-                    <input class="form-control" style="margin-top: 10px;" type="file" name="image" placeholder="image" [(ngModel)]="montre.image" [ngModelOptions]="{standalone:true}" />
+
+                    <button type="button" (click)='filePicker.click()' class="btn mt_30">Select Image</button>
+
+                    <input type="file" #filePicker style="visibility: hidden;">
+
 
                     <div class="col-sm-6 col-sm-offset-3">
                         <button class="form-control btn btn-login" type="submit">Add Product</button>
