@@ -33,7 +33,7 @@
                 <td>{{m.price}}</td>
                 <td>{{m.marque}}</td>
                 <td>{{m.description}}</td>
-                <!-- <td>{{m.image}}</td> -->
+                <td><img [src]="m.image" alt=""></td>
                 <td><button class="btn btn-info" (click)="displayWatch(m._id)">Display</button></td>
                 <td><button class="btn btn-warning" (click)="updateWatch(m)">Edit</button></td>
                 <td><button class="btn btn-danger" (click)="deleteWatch(m)">Delete</button></td>

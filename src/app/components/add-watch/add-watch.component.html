@@ -20,7 +20,11 @@
 
                     <button type="button" (click)='filePicker.click()' class="btn mt_30">Select Image</button>
 
-                    <input type="file" #filePicker style="visibility: hidden;">
+                    <input type="file" #filePicker style="visibility: hidden;" (change)='onImageSelected($event)'>
+
+                    <div *ngIf="imagePreview !=='' && imagePreview">
+                        <img [src]="imagePreview" class="imgRounded">
+                    </div>
 
 
                     <div class="col-sm-6 col-sm-offset-3">

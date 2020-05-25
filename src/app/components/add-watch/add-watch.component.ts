@@ -15,6 +15,7 @@ export class AddWatchComponent implements OnInit {
   montreForm: FormGroup;
   id: number;
   price: number;
+  imagePreview: string;
   constructor(
 
     private router: Router,
@@ -30,13 +31,14 @@ export class AddWatchComponent implements OnInit {
         price: [''],
         description: [''],
         marque: [''],
-        Image: ['']
+        image: ['']
       });
   }
   saveMontre(montre: any) {
+  console.log('image', this.montreForm.value.image);
   
   console.log("montre added", this.montre);
-  this.montreService.addMontre( this.montre ).subscribe(
+  this.montreService.addMontre( this.montre, this.montreForm.value.image ).subscribe(
   (response)=> {
     console.log("this is the reponse of post montre", response);
     const link = [`/watshDashboard`];
@@ -46,7 +48,20 @@ export class AddWatchComponent implements OnInit {
    
   }
 
- 
+  onImageSelected(event: Event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    this.montreForm.patchValue({image: file});
+    this.montreForm.updateValueAndValidity();
+    console.log("This is my file", file);
+    console.log("This is my form", this.montreForm);
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreview =  reader.result as string
+    };
+    reader.readAsDataURL(file);
+    
+  }
+
 
 }
 

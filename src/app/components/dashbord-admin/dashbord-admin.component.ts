@@ -22,7 +22,7 @@ data:any
 
   ngOnInit(){ 
     this.tableHeaders= ["ID", "First Name" , "Last Name", "Email"];
-    this.tableHeadersMontre= ["ID", "Price" , "Marque", "Description","","",""];
+    this.tableHeadersMontre= ["ID", "Price" , "Marque", "Description","Image","","",""];
     
     this.userService.getUsers().subscribe (
     (data)=> { this.users = data;

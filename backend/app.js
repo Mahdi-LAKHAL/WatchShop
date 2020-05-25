@@ -16,6 +16,11 @@ const userRoutes = require('./routes/user');
 const auth = require('./auth/auth');
 // Create express  APP
 const app = express();
+const multer = require('multer');
+// The path module provides utilities for working with file and directory paths
+const path = require('path');
+// Using /images as per default folder of images
+app.use('/images', express.static(path.join('backend/images')));
 // Connect BE with MongoDB via mongoose
 mongoose.connect('mongodb://localhost:27017/darklookDB', { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -29,41 +34,40 @@ app.use((req, res, next) => {
     next();
 });
 
-// app.get('/', (req, res) => {
-//     console.log('here in home page');
-//     const w = new Watch({
-//         price: 12,
-//         marque: "swatch",
-//         image: "image",
-//         description: "Test Product"
-//     });
+const MIME_TYPE = {
+    'image/png': 'png',
+    'image/jpeg': 'jpg',
+}
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        const isValid = MIME_TYPE[file.mimetype];
+        let error = new Error('Mime Type is Invalid');
+        if (isValid) {
+            error = null;
+        }
+        cb(null, 'backend/images')
+    },
+    filename: (req, file, cb) => {
+        const name = file.originalname.toLowerCase();
+        const extension = MIME_TYPE[file.mimetype];
+        cb(null, name + Date.now() + '.' + extension);
+    }
+});
 
-//     console.log("my object", w);
-//     w.save();
-
-// });
-
-// app.get('/dashboard', (req, res) => {
-//     //get all watches and return them from /dashboard
-//     Watch.find((err, documents) => {
-//         if (err) {
-//             console.log(" Cannot connect with DB");
-
-//         } else {
-//             console.log("All objects from DB", documents);
-
-//         }
-//     })
-// })
 // Add New Product
-app.post('/api/addwatch', auth, (req, res) => {
-    console.log('Post from FE');
-    console.log(req.body);
+app.post('/api/addwatch', multer({ storage: storage }).single('image'), (req, res) => {
+    console.log('Req File', req.file);
+
+    // req.protocol: http or https
+
+    url = req.protocol + '://' + req.get('host');
+    const imagePath = url + '/images/' + req.file.filename;
 
     const w = new Watch({
+        name: req.body.name,
         price: req.body.price,
         marque: req.body.marque,
-        image: req.body.image,
+        image: imagePath,
         description: req.body.description
     })
     w.save();

@@ -25,8 +25,8 @@ export class MontreService {
   }
   //Return all montres
   getMontres() {
-  const  url= `${this.montreUrl}api/allproducts`
-    return this.http.get<{watches: any, message:String}>(url).pipe(
+    const url = `${this.montreUrl}api/allproducts`
+    return this.http.get<{ watches: any, message: String }>(url).pipe(
       tap(_ => this.log('fetched montre')),
       catchError(this.handleError('get Montres', []))
     );
@@ -40,13 +40,19 @@ export class MontreService {
     );
   }
   // Add Montre
-  addMontre(montre: Montre): Observable<Montre> {
+  addMontre(montre: Montre, image: File): Observable<Montre> {
     const url = `${this.montreUrl}api/addwatch`;
-    console.log("url from FE", url);
-    const httpOptions = {
-      headers: new HttpHeaders({ 'content-type': 'application/json' })
-    };
-    return this.http.post<Montre>(url, montre, httpOptions).pipe(
+ 
+
+    // FormData is an object where we append ('key','value')
+    let formData = new FormData();
+    formData.append('name', montre.name);
+    formData.append('price', String(montre.price));
+    formData.append('marque', montre.marque);
+    formData.append('description', montre.description);
+    formData.append('image', image, montre.name);
+
+    return this.http.post<Montre>(url, formData).pipe(
       tap(_ => this.log(`ajouter montre id= ${montre._id}`)),
       catchError((this.handleError<any>('ajouter montre')))
     );
@@ -62,7 +68,7 @@ export class MontreService {
       catchError((this.handleError<any>('display montre')))
     );
   }
-   // Update Montre by Id
+  // Update Montre by Id
   updateMontre(montre: Montre): Observable<Montre> {
     const url = `${this.montreUrl}api/watches/${montre._id}`;
     return this.http.put(url, montre).pipe(
@@ -71,14 +77,14 @@ export class MontreService {
     );
   }
 
-   // Search Montre by Id
-  searchMontre(term: string): Observable <Montre[]> {
-    if (!term.trim()){
-     return of([]);
-   }
-   return this.http.get<Montre[]>(`${this.montreUrl}/?marque=${term}`).pipe(
-   tap(_ => this.log(`found montres matching "${term}"`)),
-   catchError(this.handleError<Montre []>('search montres', []))
-   );
+  // Search Montre by Id
+  searchMontre(term: string): Observable<Montre[]> {
+    if (!term.trim()) {
+      return of([]);
+    }
+    return this.http.get<Montre[]>(`${this.montreUrl}/?marque=${term}`).pipe(
+      tap(_ => this.log(`found montres matching "${term}"`)),
+      catchError(this.handleError<Montre[]>('search montres', []))
+    );
   }
 }
